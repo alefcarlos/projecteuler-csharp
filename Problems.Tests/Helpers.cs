@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +13,7 @@ namespace Problems
         /// <param name="multiple">The desired multiple.</param>
         /// <param name="value">Value to check.</param>
         /// <returns>Returns true if value is multiple of multiple</returns>
-        public static bool IsMultipleOf(uint multiple, uint value)
+        public static bool IsMultipleOf(int multiple, int value)
         {
             //Check possible DivisionByZero
             if (multiple == 0)
@@ -22,12 +23,12 @@ namespace Problems
             return (value % multiple) == 0;
         }
 
-        public static uint SumOfMuliples(int quantity, params uint[] possibleMultiples)
+        public static int SumOfMuliples(int max, params int[] possibleMultiples)
         {
-            uint sum = 0;
+            int sum = 0;
 
             //Validate if the number is MultipleOf, then sum it
-            for (uint value = 1; value < quantity; value++)
+            for (int value = 1; value < max; value++)
                 sum += possibleMultiples.Any(multiple => Helpers.IsMultipleOf(multiple, value)) ? value : 0;
 
             return sum;
@@ -48,27 +49,12 @@ namespace Problems
         public static bool IsEven(int value) => value % 2 == 0;
 
         /// <summary>
-        /// Checks if a number is odd
-        /// </summary>
-        /// <param name="value">Value to check</param>
-        /// <returns>Returns true if the value is odd.</returns>
-        public static bool IsOdd(long value) => !IsEven(value);
-
-        /// <summary>
-        /// Checks if a number is even
-        /// </summary>
-        /// <param name="value">Value to check</param>
-        /// <returns>Returns true if the value is even.</returns>
-        public static bool IsEven(long value) => value % 2 == 0;
-
-        /// <summary>
         /// Returns a Fibonacci sequence
         /// </summary>
         /// <param name="maxTerms">Sequence's quantity</param>
-        /// <returns>Returns a list of long.</returns>
-        public static List<long> Fibonacci(long maxTerms)
+        public static List<int> Fibonacci(int maxTerms)
         {
-            var result = new List<long> { 1, 2 };
+            var result = new List<int> { 1, 2 };
 
             var p = 2;
             while (p < maxTerms)
@@ -84,7 +70,7 @@ namespace Problems
         /// Returns the sum of all even numbers in a Fibonacci sequence
         /// </summary>
         /// <param name="maxTerms">Sequence's quantity</param>
-        public static long SumOfEvenFibonnaci(long maxTerms)
+        public static long SumOfEvenFibonnaci(int maxTerms)
         {
             var fib = Fibonacci(maxTerms);
 
@@ -95,11 +81,76 @@ namespace Problems
         /// Returns the sum of all odd numbers in a Fibonacci sequence
         /// </summary>
         /// <param name="maxTerms">Sequence's quantity</param>
-        public static long SumOfOddFibonnaci(long maxTerms)
+        public static long SumOfOddFibonnaci(int maxTerms)
         {
             var fib = Fibonacci(maxTerms);
 
             return fib.Where(x => IsOdd(x)).Sum();
+        }
+
+        /// <summary>
+        /// Find prime numbers in a range of integers usng Sieve of Eratosthenes.
+        /// </summary>
+        /// <param name="max">The max value.</param>
+        /// <returns>Returns a list of integer.</returns>
+        public static List<int> EratosthenesSieve(int max)
+        {
+            if (max < 2)
+                return new List<int>();
+
+            if (max == 2)
+                return new List<int> { 2 };
+
+            var checkTarget = (int)Math.Ceiling(Math.Sqrt(max));
+            var result = new List<int>();
+
+            var range = Enumerable.Range(2, max - 1).ToList();
+            var resultRange = Enumerable.Range(2, max - 1).ToList();
+
+            var checkTargetIndex = range.FindIndex(x => x == checkTarget);
+
+            for (int i = 0; i <= checkTargetIndex; i++)
+                resultRange.RemoveAll(x => range[i] != x && IsMultipleOf(range[i], x));
+
+            return resultRange;
+        }
+
+        /// <summary>
+        /// Returs a list of PrimeFactors
+        /// Based on https://stackoverflow.com/questions/5872962/prime-factors-in-c-sharp
+        /// </summary>
+        /// <param name="value">Value to get factors.</param>
+        public static List<int> PrimeFactors(int value)
+        {
+            var retval = new List<int>();
+            for (int b = 2; value > 1; b++)
+            {
+                while (value % b == 0)
+                {
+                    value /= b;
+                    retval.Add(b);
+                }
+            }
+            return retval;
+        }
+
+        /// <summary>
+        /// Returs a list of PrimeFactors
+        /// Based on https://stackoverflow.com/questions/5872962/prime-factors-in-c-sharp
+        /// </summary>
+        /// <param name="value">Value to get factors.</param>
+        public static List<long> PrimeFactors(long value)
+        {
+            var retval = new List<long>();
+            for (long b = 2; value > 1; b++)
+            {
+                while (value % b == 0)
+                {
+                    value /= b;
+                    retval.Add(b);
+                }
+            }
+            return retval;
         }
     }
 }
