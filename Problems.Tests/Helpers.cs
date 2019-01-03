@@ -90,6 +90,7 @@ namespace Problems
 
         /// <summary>
         /// Find prime numbers in a range of integers usng Sieve of Eratosthenes.
+        /// Based on https://pt.wikipedia.org/wiki/Crivo_de_Erat%C3%B3stenes
         /// </summary>
         /// <param name="max">The max value.</param>
         /// <returns>Returns a list of integer.</returns>
