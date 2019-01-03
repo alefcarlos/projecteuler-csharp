@@ -1,10 +1,9 @@
-using Problems.Shared;
 using Shouldly;
 using System;
 using System.Linq;
 using Xunit;
 
-namespace Problems.Tests.Shared
+namespace Problems.Tests
 {
     public class HelpersTest
     {
@@ -84,14 +83,6 @@ namespace Problems.Tests.Shared
 
             //Assert
             sum.ShouldBe(result);
-        }
-
-        [Theory]
-        [InlineData(5, 10)]
-        [InlineData(10, 44)]
-        public void SumOfEvenFibonacci_ShoulSuccess(long maxTerms, int result)
-        {
-            Helpers.SumOfEvenFibonnaci(maxTerms).ShouldBe(result);
         }
     }
 }

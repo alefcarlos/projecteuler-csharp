@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Problems.Shared
+namespace Problems
 {
-    public class Helpers
+    public static class Helpers
     {
         /// <summary>
         /// Validadtes if a value is multiple of other number
@@ -20,6 +20,17 @@ namespace Problems.Shared
 
             //A number is multiple if the remainder value is 0.
             return (value % multiple) == 0;
+        }
+
+        public static uint SumOfMuliples(int quantity, params uint[] possibleMultiples)
+        {
+            uint sum = 0;
+
+            //Validate if the number is MultipleOf, then sum it
+            for (uint value = 1; value < quantity; value++)
+                sum += possibleMultiples.Any(multiple => Helpers.IsMultipleOf(multiple, value)) ? value : 0;
+
+            return sum;
         }
 
         /// <summary>
@@ -50,6 +61,11 @@ namespace Problems.Shared
         /// <returns>Returns true if the value is even.</returns>
         public static bool IsEven(long value) => value % 2 == 0;
 
+        /// <summary>
+        /// Returns a Fibonacci sequence
+        /// </summary>
+        /// <param name="maxTerms">Sequence's quantity</param>
+        /// <returns>Returns a list of long.</returns>
         public static List<long> Fibonacci(long maxTerms)
         {
             var result = new List<long> { 1, 2 };
@@ -64,6 +80,10 @@ namespace Problems.Shared
             return result;
         }
 
+        /// <summary>
+        /// Returns the sum of all even numbers in a Fibonacci sequence
+        /// </summary>
+        /// <param name="maxTerms">Sequence's quantity</param>
         public static long SumOfEvenFibonnaci(long maxTerms)
         {
             var fib = Fibonacci(maxTerms);
@@ -71,6 +91,10 @@ namespace Problems.Shared
             return fib.Where(x => IsEven(x)).Sum();
         }
 
+        /// <summary>
+        /// Returns the sum of all odd numbers in a Fibonacci sequence
+        /// </summary>
+        /// <param name="maxTerms">Sequence's quantity</param>
         public static long SumOfOddFibonnaci(long maxTerms)
         {
             var fib = Fibonacci(maxTerms);
