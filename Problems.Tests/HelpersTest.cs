@@ -5,8 +5,24 @@ using Xunit;
 
 namespace Problems.Tests
 {
-    public class HelpersTest
+    public class HelpersTess
     {
+        [Fact]
+        public void Sum_ShouldBeSuccess()
+        {
+            // Helpers.Sum(1, 2).ShouldBe(3);
+            Assert.Equal(3, Helpers.Sum(1, 2));
+        }
+
+        [Theory]
+        [InlineData(1, 2, 3)]
+        [InlineData(5, 5, 10)]
+        [InlineData(13, 7, 20)]
+        public void SumTheory_ShouldBeSuccess(int number1, int number2, int expectedResult)
+        {
+            Helpers.Sum(number1, number2).ShouldBe(expectedResult);
+        }
+
 
         [Theory]
         [InlineData(3, 3)]
