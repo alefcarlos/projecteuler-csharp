@@ -10,7 +10,12 @@ namespace Problems.Tests
         [Fact]
         public void Sum_ShouldBeSuccess()
         {
-            // Helpers.Sum(1, 2).ShouldBe(3);
+            Helpers.Sum(1, 2).ShouldBe(3);
+        }
+
+        [Fact]
+        public void SumAssert_ShouldBeSuccess()
+        {
             Assert.Equal(3, Helpers.Sum(1, 2));
         }
 
