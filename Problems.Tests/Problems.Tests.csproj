@@ -19,4 +19,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Problems\Problems.csproj" />
+  </ItemGroup>
 </Project>

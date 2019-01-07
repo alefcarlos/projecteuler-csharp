@@ -8,6 +8,14 @@ namespace Problems
     public static class Helpers
     {
         /// <summary>
+        /// Sums two numbers.
+        /// </summary>
+        /// <param name="a">First number.</param>
+        /// <param name="b">Second number.</param>
+        /// <returns>Returns the sum of two specified integer numbers.</returns>
+        public static int Sum(int a, int b) => a + b;
+
+        /// <summary>
         /// Validadtes if a value is multiple of other number
         /// </summary>
         /// <param name="multiple">The desired multiple.</param>
