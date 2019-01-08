@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Problems.Tests
 {
-    public class HelpersTess
+    public class HelpersTest
     {
         [Fact]
         public void Sum_ShouldBeSuccess()
@@ -55,6 +55,26 @@ namespace Problems.Tests
             Should.Throw<ArgumentException>(() =>
             {
                 Helpers.IsMultipleOf(0, 3);
+            });
+        }
+
+        [Fact]
+        public void MultpleOf_ShouldThrowExpcetionWhenYIsNegative()
+        {
+
+            Should.Throw<ArgumentException>(() =>
+            {
+                Helpers.IsMultipleOf(-3, 9);
+            });
+        }
+
+
+        [Fact]
+        public void MultpleOf_ShouldThrowExpcetionWhenXIsNegative()
+        {
+            Should.Throw<ArgumentException>(() =>
+            {
+                Helpers.IsMultipleOf(3, -9);
             });
         }
 

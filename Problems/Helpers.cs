@@ -23,9 +23,9 @@ namespace Problems
         /// <returns>Returns true if value is multiple of multiple</returns>
         public static bool IsMultipleOf(int y, int x)
         {
-            // //Chek if value is negative
-            // if (value <= 0)
-            // throw new ArgumentException("O valor deve ser maior que 0.", nameof(value));
+            //Chek if value is negative
+            if (x < 0 || y < 0)
+                throw new ArgumentException("Essa operação só é possível com números naturais.");
 
             //Check possible DivisionByZero
             if (y == 0)
