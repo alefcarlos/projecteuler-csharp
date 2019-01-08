@@ -18,26 +18,30 @@ namespace Problems
         /// <summary>
         /// Validadtes if a value is multiple of other number
         /// </summary>
-        /// <param name="multiple">The desired multiple.</param>
-        /// <param name="value">Value to check.</param>
+        /// <param name="y">The desired multiple.</param>
+        /// <param name="x">Value to check.</param>
         /// <returns>Returns true if value is multiple of multiple</returns>
-        public static bool IsMultipleOf(int multiple, int value)
+        public static bool IsMultipleOf(int y, int x)
         {
+            // //Chek if value is negative
+            // if (value <= 0)
+            // throw new ArgumentException("O valor deve ser maior que 0.", nameof(value));
+
             //Check possible DivisionByZero
-            if (multiple == 0)
-                throw new ArgumentException("O múltiplo deve ser maior do que 0.", nameof(multiple));
+            if (y == 0)
+                throw new ArgumentException("O múltiplo deve ser maior do que 0.", nameof(y));
 
             //A number is multiple if the remainder value is 0.
-            return (value % multiple) == 0;
+            return (x % y) == 0;
         }
 
-        public static int SumOfMuliples(int max, params int[] possibleMultiples)
+        public static int SumOfMultiples(int max, params int[] possibleMultiples)
         {
             int sum = 0;
 
             //Validate if the number is MultipleOf, then sum it
             for (int value = 1; value < max; value++)
-                sum += possibleMultiples.Any(multiple => Helpers.IsMultipleOf(multiple, value)) ? value : 0;
+                sum += possibleMultiples.Any(y => Helpers.IsMultipleOf(y, value)) ? value : 0;
 
             return sum;
         }

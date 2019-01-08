@@ -28,31 +28,24 @@ namespace Problems.Tests
             Helpers.Sum(number1, number2).ShouldBe(expectedResult);
         }
 
-
         [Theory]
         [InlineData(3, 3)]
         [InlineData(3, 6)]
         [InlineData(3, 9)]
-        public void Multiple3_ShouldSuccess(int multiple, int value)
-        {
-            Helpers.IsMultipleOf(multiple, value).ShouldBeTrue();
-        }
-
-        [Theory]
         [InlineData(5, 5)]
         [InlineData(5, 10)]
         [InlineData(5, 15)]
-        public void Multiple5_ShouldSuccess(int multiple, int value)
+        public void Multiple_ShouldSuccess(int y, int x)
         {
-            Helpers.IsMultipleOf(multiple, value).ShouldBeTrue();
+            Helpers.IsMultipleOf(y, x).ShouldBeTrue();
         }
 
         [Theory]
         [InlineData(3, 1)]
         [InlineData(3, 5)]
-        public void Multiple3_ShouldFail(int multiple, int value)
+        public void Multiple_ShouldFail(int y, int x)
         {
-            Helpers.IsMultipleOf(multiple, value).ShouldBeFalse();
+            Helpers.IsMultipleOf(y, x).ShouldBeFalse();
         }
 
         [Fact]
@@ -61,7 +54,7 @@ namespace Problems.Tests
 
             Should.Throw<ArgumentException>(() =>
             {
-                Helpers.IsMultipleOf(0, 3).ShouldBeFalse();
+                Helpers.IsMultipleOf(0, 3);
             });
         }
 
